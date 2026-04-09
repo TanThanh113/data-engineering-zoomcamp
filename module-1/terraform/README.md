@@ -1,29 +1,35 @@
-Terraform & GCP: Service Account Impersonation
-This project demonstrates how to establish a secure "bridge" between Terraform and Google Cloud Platform (GCP) using Service Account Impersonation—a modern, secure alternative to static JSON keys.
+# Terraform & GCP: Service Account Impersonation
 
-🌟 Key Benefits
-Enhanced Security: Eliminates the risk of leaking sensitive credential files.
+This project demonstrates how to establish a secure "bridge" between **Terraform** and **Google Cloud Platform (GCP)** using **Service Account Impersonation**—a modern, secure alternative to static JSON keys.
 
-Seamless Automation: Leverages Google's Application Default Credentials (ADC).
+---
 
-Centralized Control: Manages access directly through IAM roles and identities.
+## 🌟 Key Benefits
 
-🛠 Workflow Overview
-Initialization: Set up the GCP Project and Service Account via the Console.
+* **Enhanced Security**: Eliminates the risk of leaking sensitive credential files (JSON keys).
+* **Seamless Automation**: Leverages Google's Application Default Credentials (ADC).
+* **Centralized Control**: Manages access directly through IAM roles and identities.
 
-Authentication: Sign in and configure ADC using the Google Cloud CLI.
+## 🛠 Workflow Overview
 
-Authorization: Grant the serviceAccountTokenCreator role to your user identity.
+1.  **Initialization**: Set up the GCP Project and Service Account via the Google Cloud Console.
+2.  **Authentication**: Sign in and configure ADC using the Google Cloud CLI (`gcloud auth application-default login`).
+3.  **Authorization**: Grant the `serviceAccountTokenCreator` role to your user identity for the specific Service Account.
+4.  **Deployment**: Use Terraform's **Alias Provider** to borrow Service Account tokens for resource creation.
 
-Deployment: Use Terraform's "Alias Provider" to borrow Service Account tokens for resource creation.
+## 📖 Essential Commands
 
-📖 Essential Commands
-terraform init: Initialize the working directory.
+Use the following commands to manage your infrastructure:
 
-terraform plan: Preview infrastructure changes.
+```bash
+# Initialize the working directory and download providers
+terraform init
 
-terraform apply: Deploy and build the resources.
+# Preview infrastructure changes before applying
+terraform plan
 
-terraform destroy: Clean up and remove all resources to avoid costs.
+# Deploy and build the resources (requires confirmation)
+terraform apply
 
-This repository is intended for learning and implementing secure Infrastructure as Code (IaC) practices.
+# Clean up and remove all resources to avoid costs
+terraform destroy
